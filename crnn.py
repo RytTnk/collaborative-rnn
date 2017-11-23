@@ -124,7 +124,7 @@ def run_batch(session, model, iterator, initial_state):
         feed_dict[model.targets] = targets
         feed_dict[model.seq_length] = seq_len
         feed_dict[model.initial_state] = state
-        cost, state, _ = session.run(fetches, feed_dict)
+        cost, state, _ = session.run(fetches, feed_dict)    ## this session is key to do.  at __init__ formarize.
         costs += cost
         sizes += seq_len
     with np.errstate(invalid='ignore'):
