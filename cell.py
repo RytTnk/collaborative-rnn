@@ -4,7 +4,7 @@ from __future__ import print_function
 import tensorflow as tf
 
 
-class CollaborativeGRUCell(tf.nn.rnn_cell.RNNCell):
+class CollaborativeGRUCell(tf.nn.rnn_cell.RNNCell):                ## it hand made GRU. non use module(in tf already but 2016)
 
     def __init__(self, num_units, num_users, num_items):
         """Note: users are numbered 1 to N, items are numbered 1 to M. User and
@@ -40,9 +40,9 @@ class CollaborativeGRUCell(tf.nn.rnn_cell.RNNCell):
                     w_input_i = tf.nn.embedding_lookup(items, inputs[:,1])
                 res = tf.matmul(tf.expand_dims(state, 1), w_hidden_u)
                 res = tf.sigmoid(tf.squeeze(res, [1]) + w_input_i)
-                r, z = tf.split(value=res, num_or_size_splits=2, axis=1)
+                r, z = tf.split(value=res, num_or_size_splits=2, axis=1)     ## r, z is gru parame update, forget respectly  see nlp tsuboi
             with tf.variable_scope("Candidate"):
-                with tf.device("/cpu:0"):
+                with tf.device("/cpu:0"):                                    ##cpu use?
                     users = tf.get_variable("users",
                             [self._num_users + 1, self._num_units, self._num_units],
                             dtype=tf.float32)
