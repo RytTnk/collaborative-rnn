@@ -22,7 +22,7 @@ class CollaborativeGRUCell(tf.nn.rnn_cell.RNNCell):
     def output_size(self):
         return self._num_units
 
-    def __call__(self, inputs, state, scope=None):
+    def __call__(self, inputs, state, scope=None):   ## gru cell made by hand
         # shape(inputs) = [batch_size, input_size]
         # shape(state) = [batch_size, num_units]
         with tf.variable_scope(scope or type(self).__name__):  # "CollaborativeGRUCell"
