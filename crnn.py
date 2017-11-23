@@ -112,7 +112,7 @@ class CollaborativeRNN(object):
         return self._rms_reset
 
 
-def run_batch(session, model, iterator, initial_state):
+def run_batch(session, model, iterator, initial_state):    ## this for is batch prec
     """Runs the model on all chunks of one batch."""
     costs = np.zeros(model.batch_size)
     sizes = np.zeros(model.batch_size)
@@ -132,7 +132,7 @@ def run_batch(session, model, iterator, initial_state):
     return (errors, np.sum(sizes), state)
 
 
-def run_epoch(session, train_model, valid_model, train_iter, valid_iter,
+def run_epoch(session, train_model, valid_model, train_iter, valid_iter,   ## this batch for is epoch
         tot_size):
     """Runs the model on the given data."""
     start_time = time.time()
